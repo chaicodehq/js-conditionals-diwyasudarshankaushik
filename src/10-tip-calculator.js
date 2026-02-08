@@ -31,4 +31,32 @@
  */
 export function calculateTip(billAmount, serviceRating) {
   // Your code here
+  // 1. Validate bill amount
+  if (billAmount <= 0) return null;
+
+  // 2. Map service rating to tip percentage
+  const tipMap = {
+    1: 5,
+    2: 10,
+    3: 15,
+    4: 20,
+    5: 25
+  };
+
+  const tipPercentage = tipMap[serviceRating];
+
+  // 3. Validate service rating (must be 1-5)
+  if (tipPercentage === undefined) return null;
+
+  // 4. Perform calculations
+  const rawTip = billAmount * (tipPercentage / 100);
+  const rawTotal = billAmount + rawTip;
+
+  // 5. Return object with values rounded to 2 decimal places
+  // Note: parseFloat is used because .toFixed() returns a string
+  return {
+    tipPercentage: tipPercentage,
+    tipAmount: parseFloat(rawTip.toFixed(2)),
+    totalAmount: parseFloat(rawTotal.toFixed(2))
+  };
 }

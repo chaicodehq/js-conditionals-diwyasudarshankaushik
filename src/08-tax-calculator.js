@@ -27,4 +27,31 @@
  */
 export function calculateTax(income) {
   // Your code here
+  // 1. Handle non-positive income
+  if (income <= 0) return 0;
+
+  let totalTax = 0;
+
+  // 2. Bracket 2: $10,001 – $30,000 (10%)
+  if (income > 10000) {
+    // Calculate the amount in this slice (up to $20,000 max)
+    const taxableInBracket = Math.min(income, 30000) - 10000;
+    totalTax += taxableInBracket * 0.10;
+  }
+
+  // 3. Bracket 3: $30,001 – $70,000 (20%)
+  if (income > 30000) {
+    // Calculate the amount in this slice (up to $40,000 max)
+    const taxableInBracket = Math.min(income, 70000) - 30000;
+    totalTax += taxableInBracket * 0.20;
+  }
+
+  // 4. Bracket 4: Over $70,000 (30%)
+  if (income > 70000) {
+    // Calculate the amount above $70,000
+    const taxableInBracket = income - 70000;
+    totalTax += taxableInBracket * 0.30;
+  }
+
+  return totalTax;
 }

@@ -1,3 +1,5 @@
+// import { Children } from "react";
+
 /**
  * 🎬 The Starlight Cinema
  *
@@ -10,7 +12,7 @@
  *   - Teens (13–17): $12
  *   - Adults (18–59): $15
  *   - Seniors (60+): $10
- *
+ *  
  * Weekend Surcharge:
  *   - Add $3 on weekends (when isWeekend is true)
  *
@@ -24,4 +26,24 @@
  */
 export function getTicketPrice(age, isWeekend) {
   // Your code here
+  // 1. Validation: Return -1 if age is not a valid number or negative
+  if (typeof age !== 'number' || age < 0 || isNaN(age)) {
+    return -1;
+  }
+  let price = 0;
+  // 2. Determine Base Price based on Age Groups
+   if (age <= 12) {
+    price = 8; // Children
+  } else if (age <= 17) {
+    price = 12; // Teens
+  } else if (age <= 59) {
+    price = 15; // Adults
+  } else {
+    price = 10; // Seniors (60+)
+  }
+  // 3. Apply Weekend Surcharge
+  if (isWeekend) {
+    price += 3;
+  }
+  return price;
 }

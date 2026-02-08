@@ -22,4 +22,31 @@
  */
 export function getWeatherAdvice(temperature, isRaining) {
   // Your code here
+  if (temperature >= 35) {
+    return "Too hot for hiking - stay indoors and hydrate";
+  }
+
+  // 2. Warm Tier (25°C to 34°C)
+  if (temperature >= 25) {
+    return isRaining 
+      ? "Warm but rainy - consider indoor activities" 
+      : "Great weather for hiking - don't forget sunscreen";
+  }
+
+  // 3. Perfect Tier (15°C to 24°C)
+  if (temperature >= 15) {
+    return isRaining 
+      ? "Cool and rainy - bring waterproof gear if hiking" 
+      : "Perfect hiking weather - enjoy the trails";
+  }
+
+  // 4. Chilly Tier (5°C to 14°C)
+  if (temperature >= 5) {
+    return isRaining 
+      ? "Cold and wet - best to stay indoors" 
+      : "Chilly - wear layers for your hike";
+  }
+
+  // 5. Cold Tier (Below 5°C)
+  return "Too cold - stay warm indoors";
 }
